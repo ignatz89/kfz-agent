@@ -27,7 +27,7 @@ from typing import Optional
 import anthropic
 
 DATA_FILE = Path(__file__).parent / "data" / "diagnoses.json"
-_EXTRACT_MODEL = "claude-haiku-4-5"
+_EXTRACT_MODEL = "claude-haiku-5-5"
 
 
 # ── Laden / Speichern ──────────────────────────────────────────────────────────
