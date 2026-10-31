@@ -152,7 +152,7 @@ def get_diagnosis(chat_id: int, user_content) -> str:
         resp = claude.messages.create(
             model="claude-sonnet-5-5",
             max_tokens=2048,
-            thinking={"type": "disabled"},   # wie bisher ohne Thinking — Sonnet 5 hätte es sonst standardmäßig an
+            thinking={"type": "between_tools"},   # wie bisher ohne Thinking — Sonnet 5.5 lehnt "disabled" mit HTTP 400 ab
             system=SYSTEM_PROMPT,
             tools=TOOLS,
             messages=messages,

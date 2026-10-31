@@ -78,9 +78,10 @@ def _extract_with_haiku(client: anthropic.Anthropic, conversation_text: str) -> 
         resp = client.messages.create(
             model=_EXTRACT_MODEL,
             max_tokens=512,
+            thinking={"type": "disabled"},   # reine Extraktion; Haiku 5.5 denkt sonst ggf. und content[0] waere ein Thinking-Block
             messages=[{"role": "user", "content": prompt}],
         )
-        raw = resp.content[0].text
+        raw = next(b.text for b in resp.content if b.type == "text")
         m = re.search(r'\{[\s\S]*\}', raw)
         if m:
             return json.loads(m.group())
